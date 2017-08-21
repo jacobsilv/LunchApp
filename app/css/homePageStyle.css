@@ -11,6 +11,8 @@ body{
 }
 
 a{
+	text-decoration: none;
+	color:black;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -33,8 +35,67 @@ fieldset{
 
 }
 
+.container{
+	padding-top:10px;
+	background:#fff;
+}
+
+/*.tabs{
+	text-align:center;
+
+	list-style:none;
+
+	margin: 0 10px;
+	padding: 0 10px;
+	border: 1px solid #AAA;
+	background: #ECECEC;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	line-height: 24px;
+	text-decoration: none;
+
+*/
+}
+
+.left{
+	text-align:left;
+}
+.right{
+	text-align:right;
+}
+
+.tabs{
+
+}
+
+.tab-title{
+	margin:20px 20px 20px 20px;
+	font-size:35px;
+}
+
+.tabrow {
+  text-align: center;
+  list-style: none;
+  margin: 10;
+  padding: 10;
+
+  line-height: 40px;
+}
+.tabrow li {
+  margin: 0 15px;
+  padding: 0 80px;
+  border: 1px solid #AAA;
+  background: #ECECEC;
+  display: inline-block;
+}
+
+div .group{
+	display:inline-block;
+}
 
 div{
+
 	font-size: 20px;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
