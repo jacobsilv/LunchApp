@@ -1,0 +1,268 @@
+
+<html>
+
+  <head>
+    <link rel="stylesheet" href="css/personal-bootstrap.css">
+    <link rel="stylesheet" href="css/homePageStyle.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script src="scripts/homePageController.js"></script>
+    <script src="scripts/scheduleController.js"></script>
+    <script src="scripts/createController.js"></script>
+    <script src="scripts/joinController.js"></script>
+
+
+    <script src="js/bootstrap.js"></script>
+  </head>
+
+  <body ng-app="homeApp">
+    <div class="container">
+      <div ng-controller="homePageController">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1 class="text-center">
+              {{heading}}
+            </h1>
+          </div>
+
+        </div>
+
+
+
+        <div class="row vertical-offset-6" >
+          <div class="col-xs-12" >
+            <ul class="" >
+
+              <li class="tabs" ng-repeat="options in mainOptions" >
+                <a href="" ng-click="tabPicked(options);makeLunchRuns();">{{options.tab}}</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="text-center vertical-offset-3" style="font-size:25px">
+        {{mainInfo}}
+        </div>
+
+
+
+
+        <div class=" well" ng-show="tabName=='Create'" ng-controller="createController" >
+
+          <div class="text-center col-md-6">
+            <div class="vertical-offset-2">
+              food<br>
+              <input class="form-control" ng-model="typeOfFood" placeholder="type of food" style="width:60%" ></input>
+            </div>
+
+            <div class="vertical-offset-1">
+              destination<br>
+              <input class="form-control" ng-model="destination" placeholder="restraunt" style="width:60%"></input>
+            </div>
+
+            <div class="vertical-offset-1">
+              start time<br>
+              <select id="select-pos" class="form-control" ng-model="startTime" style="width:60%">
+                <option value="{{time}}" ng-repeat="time in times">{{time}}</option>
+              </select>
+            </div>
+
+            <div class="vertical-offset-2">
+              end time<br>
+              <select id="select-pos" class="form-control" ng-model="endTime" style="width:60%">
+                <option value="{{time}}" ng-repeat="time in times">{{time}}</option>
+              </select>
+            </div>
+          </div>
+
+
+
+          <div class="text-center col-md-6">
+            <div class="col-md-6">
+              payments accepted<br>
+                <div class="row">
+                  <fieldset>
+                    <!-- <div class="col-xs-4" ng-repeat="payment in typesOfPayment" >
+                    <input id="{{payment}}" value="{{payment}}" class="large" type="checkbox">
+                    <label for="{{payment}}" style="font-size:14px" >{{payment}}</label>
+                    </div> -->
+
+                    <div class="col-xs-4" >
+                      <input id="{{typesOfPayment[0]}}" value="{{typesOfPayment[0]}}" class="large" type="checkbox" ng-model="paymentC" ng-check="paymentC">
+                      <label for="{{typesOfPayment[0]}}" style="font-size:14px" >{{typesOfPayment[0]}}</label>
+                    </div>
+                    <div class="col-xs-4" >
+                      <input id="{{typesOfPayment[1]}}" value="{{typesOfPayment[1]}}" class="large" type="checkbox" ng-model="paymentV" ng-check="paymentV">
+                      <label for="{{typesOfPayment[1]}}" style="font-size:14px" >{{typesOfPayment[1]}}</label>
+                    </div>
+                    <div class="col-xs-4" >
+                      <input id="{{typesOfPayment[2]}}" value="{{typesOfPayment[2]}}" class="large" type="checkbox" ng-model="paymentK" ng-check="paymentK">
+                      <label for="{{typesOfPayment[2]}}" style="font-size:14px" >{{typesOfPayment[2]}}</label>
+                    </div>
+
+                  </fieldset>
+                </div>
+              </div>
+
+
+
+              <div class="row col-md-6">
+                delivery<br>
+
+                <fieldset>
+                  <div class="radio">
+                    <input id="delivery" name="deliverGroup" value="delivery" class="large" checked="checked" type="radio" ng-model="delivery">
+                    <label for="delivery">deliver</label>
+                  </div>
+
+
+                  <div class="radio">
+                    <input id="nondelivery" name="deliverGroup" value="nondelivery" class="large" type="radio" ng-model="delivery">
+                    <label for="nondelivery">nondeliver</label>
+                  </div>
+                </fieldset>
+
+                <!--
+                <fieldset>
+                <div class="radio">
+                 <input id="Public" name="openGroup" value="Public" class="large" checked="checked" type="radio" ng-model="PP">
+                 <label for="Public">public</label>
+                </div>
+
+                <div class="radio">
+                <input id="Private" name="openGroup" value="Private" class="large" type="radio" ng-model="PP">
+                <label for="Private">private</label>
+                </div>
+
+
+                </fieldset> -->
+
+              </div>
+              <div class="col-md-6 vertical-offset-1">
+                date<br>
+
+                <input style="width:50px;" class="form-control " onkeypress='return (event.charCode >= 48 && event.charCode <= 57)' maxlength="2" ng-model="month">
+
+
+                <input style="width:50px;" class="form-control" onkeypress='return (event.charCode >= 48 && event.charCode <= 57)' maxlength="2" ng-model="day">
+
+                <input style="width:50px;" class="form-control " onkeypress='return (event.charCode >= 48 && event.charCode <= 57)' maxlength="2" ng-model="year">
+
+              </div>
+
+
+              <div class="vertical-offset-1 col-md-6">
+                group size<br>
+                <input type="number" min="0" max="100" value="0" onkeypress='return (event.charCode >= 48 && event.charCode <= 57)' ng-model="groupSize"></input>
+              </div>
+
+
+
+            </div>
+
+
+
+
+            <div class="text-center">
+              <div class="vertical-offset-2">
+                username<br>
+                <input style="width:200px;" class="form-control " maxlength="20" ng-model="username" >
+              </div>
+              <div >
+                password<br>
+                <input style="width:200px;" class="form-control " maxlength="20" ng-model="password" >
+              </div>
+
+
+
+
+              <div class="vertical-offset-5">
+                <button class="btn btn-success" value="submit" ng-click="reviewScheduling();">submit</button>
+
+              </div>
+            </div>
+            <br><br>
+
+
+          </div>
+
+
+
+          <div ng-show="tabName=='Join'" ng-controller="joinController">
+            <div class="container row well text-center" ng-repeat="appointment in appsArray">
+              <div class="text-right">
+                <button class="btn btn-danger btn-xs" style="max-width:40px" value="X" ng-click="removeRun(appointment);makeLunchRuns()">X</button>
+              </div>
+              <div class="row vertical-offset-5">
+                <div class="col-md-3">
+                  username: {{appointment.username}}<br>
+                  <!-- PP: {{appointment.PP}}<br> -->
+                  destination: {{appointment.destination}}<br>
+                </div>
+                <div class="col-md-3">
+                  food: {{appointment.food}}<br>
+                  size: {{appointment.groupSize}}<br>
+                </div>
+                <div class="col-md-3">
+                  leaving: {{appointment.startTime}}<br>
+                  returning: {{appointment.endTime}}<br>
+                </div>
+                <div class="col-md-3">
+                  delivery: {{appointment.delivery}}<br>
+                  payments: {{appointment.paymentC}}
+                  {{appointment.paymentV}}
+                  {{appointment.paymentK}}<br>
+                </div>
+                <div class="text-center vertical-offset-2">
+                  {{appointment.month}}/{{appointment.day}}/{{appointment.year}}<br>
+                </div>
+          <!-- other attendents: -->
+
+                <span class="row vertical-offset-2" ng-repeat="user in appointment.otherUsers">
+                  <span class="col-md-3">
+
+                  </span>
+                  <span class="col-md-3">
+                    attending: {{user}}
+                  </span>
+                  <span class="col-md-3 ">
+                    <button class="btn btn-danger btn-xs" style="max-width:40px" value="X" ng-click="removeUpdate(appointment, user)">X</button>
+                  </span>
+                  <span class="col-md-3 ">
+
+                  </span>
+                  <br>
+                </span>
+                <br>
+
+                <button class="btn btn-success vertical-offset-2" value="join" ng-click="updateRun(appointment)">join</button>
+              </div>
+
+            </div>
+
+        <!--
+        <div ng-show="tabName=='Schedule'"  ng-controller="scheduleController">
+        <div class="well text-center" ng-repeat="arrangement in scheduleArray">
+        {{arrangement.month}}/{{arrangement.day}}/{{arrangement.year}}<br>
+        leaving: {{arrangement.startTime}}<br>
+        returning: {{arrangement.endTime}}<br>
+        food: {{arrangement.food}}<br>
+
+        <br>
+        <a class="btn btn-success" ng-click="removeAppointment(arrangement)">remove</a><br>
+        </div>
+        </div>
+         -->
+
+          </div>
+        </div>
+
+  </body>
+</html>
